@@ -60,7 +60,7 @@ export default class singleproject extends Component {
     const appThis = this
     return (
       <Navigator
-        initialRoute={{index: 0 }}
+        initialRoute={{index: 3 }}
         renderScene={appThis.renderNewScene}
         configureScene={(route, routeStack) =>
           Navigator.SceneConfigs.FadeAndroid}

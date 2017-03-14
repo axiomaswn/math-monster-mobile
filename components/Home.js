@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import mainBackground from '../img/main.png'
 import runPlayer from '../img/run.gif'
-// import Sound from 'react-native-sound'
+import Sound from 'react-native-sound'
 // import menuSound from '../audio/wrong.mp3'
 
 var {width, height} = require('Dimensions').get('window');
@@ -22,30 +22,29 @@ export default class Fight extends Component {
     }
   }
 
-  // componentWillMount(){
-  //
-  //
-  //   console.log('did');
-  //   var whoosh = new Sound('wrong.mp3', Sound.MAIN_BUNDLE, (error) => {
-  //     if (error) {
-  //       console.log('failed to load the sound', error);
-  //       return;
-  //     }
-  //     else {
-  //       console.log('normal');
-  //     }
-  //     console.log('duration in seconds: ' + whoosh.getDuration() + 'number of channels: ' + whoosh.getNumberOfChannels());
-  //   });
-  //   whoosh.release();
-  //   whoosh.play((success) => {
-  //     if (success) {
-  //       console.log('successfully finished playing');
-  //     } else {
-  //       console.log('playback failed due to audio decoding errors');
-  //     }
-  //   });
-  //
-  // }
+  componentWillMount(){
+    console.log('did');
+    var whoosh = new Sound('wrong.mp3', Sound.MAIN_BUNDLE, (error) => {
+      if (error) {
+        console.log('failed to load the sound', error);
+        return;
+      }
+      else {
+        console.log('normal');
+      }
+      console.log('duration in seconds: ' + whoosh.getDuration() + 'number of channels: ' + whoosh.getNumberOfChannels());
+    });
+    // whoosh.release();
+    debugger
+    whoosh.play((success) => {
+      if (success) {
+        console.log('successfully finished playing');
+      } else {
+        console.log('playback failed due to audio decoding errors');
+      }
+    });
+
+  }
 
   render() {
     return (

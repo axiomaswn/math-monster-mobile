@@ -1,4 +1,4 @@
-package com.mathmonster;
+package com.singleproject;
 
 import android.app.Application;
 
