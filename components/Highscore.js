@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import mainBackground from '../img/highscore.png'
+import Sound from 'react-native-sound'
 
 var {width, height} = require('Dimensions').get('window');
 
@@ -17,6 +18,25 @@ export default class Highscore extends Component {
 
     }
   }
+  componentDidMount () {
+    var suara = new Sound('gameover.ogg', Sound.MAIN_BUNDLE, (err) => {
+      if (err) {
+        console.log('failed', err)
+      } else {
+        console.log('success', suara.getDuration())
+        suara.play()
+        suara.setNumberOfLoops(-1);
+        this.setState({
+          suara : suara,
+        });
+      }
+    })
+  }
+
+  handleSoundStop () {
+    this.state.suara.pause()
+    this.state.suara.stop()
+  }
 
   render() {
     return (
@@ -26,7 +46,10 @@ export default class Highscore extends Component {
         <View style={styles.containerCenter}>
           <Image style={styles.latar} source={mainBackground} />
           <View style={styles.containerButton}>
-            <TouchableOpacity  onPress={() => {this.props.navigator.popN(3: 1)}}>
+            <TouchableOpacity  onPress={() => {
+              this.props.navigator.popToTop()
+              this.handleSoundStop()
+            }}>
               <Text style={styles.buttonPlay}>Go Home!</Text>
             </TouchableOpacity>
           </View>

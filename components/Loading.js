@@ -19,9 +19,10 @@ export default class Loading extends Component {
   componentDidMount(){
     const appThis = this;
     setTimeout(function(){
-      appThis.props.navigator.push({index:1})
-    }, 3000);
+      appThis.props.navigator.push({index:3})
+    }, 2000);
   }
+
   render() {
     return (
       <View style={styles.allscreen}>

@@ -10,6 +10,8 @@ import {
 import hutan from '../img/forest.png'
 import player from '../img/player.gif'
 import monster from '../img/monster.gif'
+import Sound from 'react-native-sound'
+import Hit from 'react-native-sound'
 
 var {width, height} = require('Dimensions').get('window');
 var SIZE          = 4;
@@ -18,7 +20,6 @@ var CELL_PADDING  = Math.floor(CELL_SIZE * .05);
 var BORDER_RADIUS = 20;
 var TILE_SIZE     = CELL_SIZE - CELL_PADDING * 2;
 var LETTER_SIZE   = Math.floor(TILE_SIZE * .35);
-
 export default class Fight extends Component {
   constructor (props) {
     super(props)
@@ -27,6 +28,37 @@ export default class Fight extends Component {
       txtEnergyMonster : 1200,
     }
   }
+  componentDidMount () {
+    var suara = new Hit('game.ogg', Hit.MAIN_BUNDLE, (err) => {
+      if (err) {
+        console.log('failed', err)
+      } else {
+        console.log('success', suara.getDuration())
+        suara.play()
+        suara.setNumberOfLoops(-1);
+        this.setState({
+          suara : suara,
+        });
+      }
+    })
+    var hit = new Hit('hit.ogg', Hit.MAIN_BUNDLE, (err) => {
+      if (err) {
+        console.log('failed', err)
+      } else {
+        console.log('success', hit.getDuration())
+        // hit.play()
+        // hit.setNumberOfLoops(-1);
+        this.setState({
+          hit : hit,
+        });
+      }
+    })
+  }
+
+  handleSoundStop () {
+    this.state.suara.pause()
+    this.state.suara.stop()
+  }
 
   componentWillMount(){
     console.log('will');
@@ -34,6 +66,7 @@ export default class Fight extends Component {
     const firstSetY = Math.floor((Math.random() * 100) + 20);
     const firstSetZ = firstSetX + firstSetY;
     this.setState({
+      pindah : 9,
       angkaPertama : firstSetX,
       angkaKedua   : firstSetY,
       angkaHasil   : firstSetZ,
@@ -41,6 +74,8 @@ export default class Fight extends Component {
   }
 
   handleClick (number) {
+    this.state.hit.stop()
+    this.state.hit.play()
     let currentWinner = '';
     const currentHit = (Math.floor((Math.random() * 120) + 40));
     if (number === this.state.angkaHasil) {
@@ -83,12 +118,24 @@ export default class Fight extends Component {
 
   checkWinner () {
     if (this.state.txtEnergyMonster <= 0 && this.state.txtEnergyPlayer > 0) {
+      this.handleSoundStop()
       console.log('menang');
-      this.props.navigator.push({index: 5})
+      if (this.state.pindah===9) {
+        this.props.navigator.push({index: 5})
+        this.setState({
+          pindah : 6,
+        });
+      }
     }
     else if (this.state.txtEnergyPlayer <= 0 && this.state.txtEnergyMonster > 0){
+      this.handleSoundStop()
       console.log('kalah');
-      this.props.navigator.push({index: 6})
+      if (this.state.pindah===9) {
+        this.props.navigator.push({index: 6})
+        this.setState({
+          pindah : 6,
+        });
+      }
     }
   }
 

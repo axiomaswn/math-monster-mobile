@@ -19,7 +19,7 @@ export default class Thanks extends Component {
   componentWillMount(){
     const appThis = this;
     setTimeout(function(){
-      appThis.props.navigator.push({index:3})
+      appThis.props.navigator.push({index:2})
     }, 2500);
   }
   render() {

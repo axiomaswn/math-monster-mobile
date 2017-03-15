@@ -16,17 +16,17 @@ export default class singleproject extends Component {
   renderNewScene (route, navigator) {
     if (route.index === 0) {
       return (
-        <LoadingScene route={route} navigator={navigator} />
+        <ThanksScene route={route} navigator={navigator} />
       )
     }
     else if (route.index === 1) {
       return (
-        <ThanksScene route={route} navigator={navigator} />
+        <WelcomeScene route={route} navigator={navigator} />
       )
     }
     else if (route.index === 2) {
       return (
-        <WelcomeScene route={route} navigator={navigator} />
+        <LoadingScene route={route} navigator={navigator} />
       )
     }
     else if (route.index === 3) {
