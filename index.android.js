@@ -10,6 +10,7 @@ import LoadingScene from './components/Loading'
 import {
   AppRegistry,
   Navigator,
+  BackAndroid,
 } from 'react-native';
 
 export default class singleproject extends Component {
@@ -58,7 +59,12 @@ export default class singleproject extends Component {
 
   render() {
     const appThis = this
+    // BackAndroid.addEventListener('hardwareBackPress', function() {
+    //   console.log('makan');
+    //   return true;
+    // })
     return (
+
       <Navigator
         initialRoute={{index: 3 }}
         renderScene={appThis.renderNewScene}

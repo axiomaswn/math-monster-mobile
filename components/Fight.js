@@ -5,6 +5,7 @@ import {
   Text,
   View,
   Image,
+  BackAndroid,
   TouchableOpacity,
 } from 'react-native';
 import hutan from '../img/forest.png'
@@ -183,6 +184,10 @@ export default class Fight extends Component {
   }
 
   render() {
+    BackAndroid.addEventListener('hardwareBackPress', function() {
+      console.log('cant exit');
+      return true;
+    })
     return (
       <View style={styles.allscreen}>
         <View style={styles.barHealth}>

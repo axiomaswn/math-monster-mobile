@@ -18,7 +18,7 @@ export default class Fight extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      playMusic: false,
+      // playMusic: false,
     }
   }
 
@@ -38,26 +38,26 @@ export default class Fight extends Component {
     })
   }
 
-  componentWillReceiveProps(nextProps){
-    if(this.state.playMusic) {
-      var suara = new Sound('menu.ogg', Sound.MAIN_BUNDLE, (err) => {
-        if (err) {
-          console.log('failed', err)
-        } else {
-          console.log('success', suara.getDuration())
-          suara.play()
-          suara.setNumberOfLoops(-1);
-          this.setState({
-            suara : suara,
-          });
-        }
-      })
-    }
-    this.setState({
-      playMusic: true,
-    })
-
-  }
+  // componentWillReceiveProps(nextProps){
+  //   if(this.state.playMusic) {
+  //     var suara = new Sound('menu.ogg', Sound.MAIN_BUNDLE, (err) => {
+  //       if (err) {
+  //         console.log('failed', err)
+  //       } else {
+  //         console.log('success', suara.getDuration())
+  //         suara.play()
+  //         suara.setNumberOfLoops(-1);
+  //         this.setState({
+  //           suara : suara,
+  //         });
+  //       }
+  //     })
+  //   }
+  //   this.setState({
+  //     playMusic: true,
+  //   })
+  //
+  // }
 
   handleSoundStop () {
     this.state.suara.pause()
